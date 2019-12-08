@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 let itemService = ItemsService.shared
-let link = itemService.singleItem
 
 class ItemViewController: UIViewController {
    
@@ -18,7 +17,6 @@ class ItemViewController: UIViewController {
        override func viewDidLoad() {
            super.viewDidLoad()
            
-        
            setupUI()
        }
        
