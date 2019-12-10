@@ -9,6 +9,7 @@
 import UIKit
 
 typealias Parameters = [String: String]
+ let secondVC = TableViewController()
 
 enum ItemsError:Error {
     case noDataAvailable
@@ -16,9 +17,8 @@ enum ItemsError:Error {
 }
 
 class ItemPost {
-    func Post(completion: @escaping(Result<[Items], ItemsError>) -> Void) {
-        //let parameters = ["TextFinder":"шуба"]
-        guard let mediaImage = Media(withImage: #imageLiteral(resourceName: "testImage"), forKey: "file") else { return }
+    func Post(withmedia image:UIImage, completion: @escaping(Result<[Items], ItemsError>) -> Void) {
+        guard let mediaImage = Media(withImage: image, forKey: "file") else { return }
 
         guard let url = URL(string: "http://89.108.90.8:5001/photo") else { return }
         var request = URLRequest(url: url)
@@ -39,6 +39,7 @@ class ItemPost {
         
             if let data = data {
                 do {
+                    print(data)
                     let json = try JSONDecoder().decode(JSData.self, from: data)
                     print(json)
                     let jsonData = json.data
@@ -79,6 +80,7 @@ class ItemPost {
                     let json = try JSONDecoder().decode(JSSingleData.self, from: data)
                     let jsonData = json.data
                     print(jsonData)
+                   
                     completion(.success(jsonData))
                 } catch {
                     completion(.failure(.canNotProcData))

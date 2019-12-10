@@ -9,32 +9,20 @@
 import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var items = [Items]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
+    
+    
     let itemService = ItemsService.shared
     let itemPost = ItemPost()
     let tableView = UITableView()
+    let thirdVC = ItemViewController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         setupUI()
-      DispatchQueue.main.async {
-          self.itemPost.Post { [weak self] result in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let jsonData):
-                        self?.items = jsonData
-                    }
-                }
-      }
         
+        print(itemService.items)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,14 +31,16 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return itemService.items.count
        }
        
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseId, for: indexPath) as! TableViewCell
-        if let imageURL = URL(string: "http:" + items[indexPath.row].url) {
+        if let imageURL = URL(string: "http:" + itemService.items[indexPath.row].url) {
             cell.setImage(imageURL: imageURL)
         }
+        cell.titleLabel.text = "Брэнд: \(itemService.items[indexPath.row].title)"
+        cell.priceLabel.text = "Цена на Lamoda: \(itemService.items[indexPath.row].price)"
         return cell
        }
     
@@ -59,11 +49,11 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let thirdVC = ItemViewController()
-        if let imageURL = URL(string: "http:" + items[indexPath.row].url) {
+        
+        if let imageURL = URL(string: "http:" + itemService.items[indexPath.row].url) {
                    thirdVC.setImage(imageURL: imageURL)
                }
-        let id = items[indexPath.row].id
+        let id = itemService.items[indexPath.row].id
         print(id)
         DispatchQueue.main.async {
             self.itemPost.PostID(withparameter:"\(id)") { result in
@@ -72,11 +62,16 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     print(error)
                 case .success(let jsonData):
                     self.itemService.singleItem = [jsonData]
+                    DispatchQueue.main.sync {
+                        self.thirdVC.descriptionLabel.text = "Описание: \(self.itemService.singleItem[0].description)"
+                    }
                 }
             }
         }
-        
+    
         navigationController?.pushViewController(thirdVC, animated: true)
+        
+        
     }
     
     func setupUI() {

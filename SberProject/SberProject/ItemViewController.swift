@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 let itemService = ItemsService.shared
-let link = itemService.singleItem
 
 class ItemViewController: UIViewController {
    
@@ -18,21 +17,20 @@ class ItemViewController: UIViewController {
        override func viewDidLoad() {
            super.viewDidLoad()
            
-        
            setupUI()
        }
        
        func setImage(imageURL : URL) {
-                     DispatchQueue.main.async {
-                         let data = try? Data(contentsOf: imageURL)
-                         if let data = data {
-                             let image = UIImage(data: data)
-                             DispatchQueue.main.async {
-                              self.MyImageView.image = image
-                             }
-                         }
+            DispatchQueue.main.async {
+                let data = try? Data(contentsOf: imageURL)
+                if let data = data {
+                let image = UIImage(data: data)
+            DispatchQueue.main.async {
+                self.MyImageView.image = image
                 }
+            }
         }
+    }
               
        
     let MyImageView: UIImageView = {
@@ -53,6 +51,15 @@ class ItemViewController: UIViewController {
            return linkButton
        }()
     
+     let descriptionLabel: UILabel = {
+           let descriptionLabel = UILabel()
+           descriptionLabel.numberOfLines = 2
+           descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+           descriptionLabel.textAlignment = .center
+          // descriptionLabel.textRect(forBounds: CGRect(x: 0, y: 0, width: 30, height: 200), limitedToNumberOfLines: 3)
+           return descriptionLabel
+       }()
+    
     @objc
     func linkButtonAction(){
         let fourthVC = WebVIewController()
@@ -61,20 +68,23 @@ class ItemViewController: UIViewController {
     
     
     func setupUI() {
-        //linkButton.center = CGPoint(x: view.center.x, y: view.center.y)
-        linkButton.frame = view.frame
+       // descriptionLabel.text = "Описание: \(itemService.singleItem[0].description)"
+        view.addSubview(descriptionLabel)
+        
         view.addSubview(linkButton)
            
-        MyImageView.frame = view.frame
         view.addSubview(MyImageView)
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             //MyImageView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             MyImageView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             MyImageView.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
-            MyImageView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, constant: -100),
+            MyImageView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -90),
             MyImageView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            linkButton.topAnchor.constraint(equalTo: MyImageView.bottomAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: MyImageView.bottomAnchor),
+            descriptionLabel.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,constant: -45),
+            descriptionLabel.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
+            linkButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
             linkButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             linkButton.widthAnchor.constraint(equalTo: safeArea.widthAnchor)
             ])

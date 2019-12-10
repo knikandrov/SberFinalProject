@@ -23,33 +23,10 @@ class WebVIewController: UIViewController, WKNavigationDelegate {
         let url = item.singleItem[0].link
         print(url)
         let request = URLRequest(url: URL(string: "\(url)")!)
-        
         webView.load(request)
-        
         view.addSubview(webView)
-        
        
     }
-    
-    
-
-   
-//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//        if let text = webView.url?.absoluteString{
-//            print("------------------\(text)----------------")
-//            if let token = text.slice(from: "=", to: "&") {
-//                print(token)
-//                if token.count > 18 {
-//                    let newNoteVC = CategoriesViewController()
-//                    navigationController?.pushViewController(newNoteVC, animated: true)
-//                }
-//            }
-//        }
-//        webView.goBack()
-//
-//
-//    }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: true)

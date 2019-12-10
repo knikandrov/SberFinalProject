@@ -19,18 +19,46 @@ class TableViewCell: UITableViewCell {
         return img
     }()
     
+    let titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.numberOfLines = 1
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textAlignment = .center
+       
+        return titleLabel
+    }()
+    
+    let priceLabel: UILabel = {
+        let priceLabel = UILabel()
+        priceLabel.numberOfLines = 1
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel.textAlignment = .center
+        
+        return priceLabel
+    }()
     
     public static let reuseId = "MyReuseID"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-        MyImageView.frame = self.contentView.frame
-        MyImageView.center = self.contentView.center
+       // MyImageView.frame = self.contentView.frame
+       // MyImageView.center = self.contentView.center
+        contentView.addSubview(titleLabel)
         contentView.addSubview(MyImageView)
-        MyImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        MyImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        MyImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        MyImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
+        contentView.addSubview(priceLabel)
+        NSLayoutConstraint.activate([
+                    MyImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+                    MyImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 100),
+                    MyImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -100),
+                    MyImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
+                    titleLabel.topAnchor.constraint(equalTo: MyImageView.bottomAnchor),
+                    titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+                    titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50),
+                    priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+                    priceLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+                    priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+                   ])
+       
     }
     
     func setImage(imageURL : URL) {
