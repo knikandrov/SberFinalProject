@@ -37,15 +37,30 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
+        self.view.layer.opacity = 1
     }
     
     private func presentImagePicker(sourceType: UIImagePickerController.SourceType) {
         imagePicker.present(parent: self, sourceType: sourceType)
     }
   
+    let startButton: UIButton = {
+                 let startButton = UIButton(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
+                 startButton.backgroundColor = UIColor.white
+                 //startButton.setTitle("Поиск одежды", for: .normal)
+                 startButton.setImage(UIImage(named: "search"), for: .normal)
+                 startButton.layer.cornerRadius = 40
+                 startButton.addTarget(self, action: #selector(start), for: .touchUpInside)
+                 return startButton
+             }()
     
     @objc
     func start(){
+        UIView.transition(with: self.view, duration: 1.5, options: .transitionFlipFromBottom, animations: {
+            self.startButton.layer.opacity = 0
+            self.view.layer.opacity = 0
+        }, completion: {
+            _ in
         DispatchQueue.main.async {
         self.itemPost.Post(withmedia: self.imgData) { [weak self] result in
                 switch result {
@@ -61,6 +76,7 @@ class ViewController: UIViewController {
         }
     }
         self.navigationController?.pushViewController(self.secondVC, animated: true)
+        })
 }
     
     @objc
@@ -115,7 +131,6 @@ class ViewController: UIViewController {
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
         
-        view.backgroundColor = .red
         startButton.center = CGPoint(x: view.center.x, y: view.center.y + 150)
         view.addSubview(startButton)
      

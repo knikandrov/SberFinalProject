@@ -47,6 +47,11 @@ class ItemPost {
                 } catch {
                     completion(.failure(.canNotProcData))
                     print(error)
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
+                        
+                    }
                 }
             }
             }.resume()
@@ -56,7 +61,7 @@ class ItemPost {
         
         let parameters = ["itemID":parameter]
       //  guard let mediaImage = Media(withImage: #imageLiteral(resourceName: "testImage"), forKey: "file") else { return }
-
+        
         guard let url = URL(string: "http://89.108.90.8:5001/item") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -80,11 +85,16 @@ class ItemPost {
                     let json = try JSONDecoder().decode(JSSingleData.self, from: data)
                     let jsonData = json.data
                     print(jsonData)
-                   
                     completion(.success(jsonData))
                 } catch {
+                    
                     completion(.failure(.canNotProcData))
                     print(error)
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
+                    }
+                   
                 }
             }
             }.resume()
