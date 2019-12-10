@@ -41,8 +41,6 @@ class TableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-       // MyImageView.frame = self.contentView.frame
-       // MyImageView.center = self.contentView.center
         contentView.addSubview(titleLabel)
         contentView.addSubview(MyImageView)
         contentView.addSubview(priceLabel)

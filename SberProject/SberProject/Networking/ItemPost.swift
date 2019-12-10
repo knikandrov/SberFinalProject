@@ -50,7 +50,7 @@ class ItemPost {
                     DispatchQueue.main.async {
                         let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Click", style: .default, handler: nil))
-                        
+                        secondVC.present(alert, animated: true, completion: nil)
                     }
                 }
             }

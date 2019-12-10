@@ -75,7 +75,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func setupUI() {
-        tableView.frame = view.frame
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)

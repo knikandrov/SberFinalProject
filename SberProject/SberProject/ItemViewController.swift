@@ -56,7 +56,6 @@ class ItemViewController: UIViewController {
            descriptionLabel.numberOfLines = 2
            descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
            descriptionLabel.textAlignment = .center
-          // descriptionLabel.textRect(forBounds: CGRect(x: 0, y: 0, width: 30, height: 200), limitedToNumberOfLines: 3)
            return descriptionLabel
        }()
     
@@ -68,15 +67,12 @@ class ItemViewController: UIViewController {
     
     
     func setupUI() {
-       // descriptionLabel.text = "Описание: \(itemService.singleItem[0].description)"
+        view.backgroundColor = .black
         view.addSubview(descriptionLabel)
-        
         view.addSubview(linkButton)
-           
         view.addSubview(MyImageView)
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            //MyImageView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             MyImageView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             MyImageView.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
             MyImageView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -90),

@@ -140,7 +140,6 @@ class ViewController: UIViewController {
         GalleryButton.center = CGPoint(x: view.center.x + 100, y: view.center.y + 100)
         view.addSubview(GalleryButton)
         
-        MyImageView.frame = view.frame
         view.addSubview(MyImageView)
         let safeArea = view.safeAreaLayoutGuide
         
@@ -171,7 +170,6 @@ extension ViewController: ImagePickerDelegate {
     }
 
     func imagePickerDelegate(canUseCamera accessIsAllowed: Bool, delegatedForm: ImagePicker) {
-        // works only on real device (crash on simulator)
         if accessIsAllowed { presentImagePicker(sourceType: .camera) }
     }
 }
