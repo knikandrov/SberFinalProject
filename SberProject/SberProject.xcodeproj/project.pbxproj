@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		361544C423A013D800A2D947 /* ImageCashe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361544C323A013D800A2D947 /* ImageCashe.swift */; };
 		362CDF7D239D03BD00783C73 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CDF7C239D03BD00783C73 /* WebViewController.swift */; };
 		362CDF7F239D146100783C73 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CDF7E239D146100783C73 /* ImagePicker.swift */; };
 		365D1D10239A5505006432C4 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D1D0F239A5505006432C4 /* Item.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		361544C323A013D800A2D947 /* ImageCashe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCashe.swift; sourceTree = "<group>"; };
 		362CDF7C239D03BD00783C73 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		362CDF7E239D146100783C73 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		365D1D0F239A5505006432C4 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				365D1D11239A73C3006432C4 /* ItemPost.swift */,
+				361544C323A013D800A2D947 /* ImageCashe.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				365D1D16239AA870006432C4 /* ItemViewController.swift in Sources */,
 				36BFCD4A239957B600C62C92 /* TableViewController.swift in Sources */,
 				36796DFA2396BF4A00CDE40C /* ViewController.swift in Sources */,
+				361544C423A013D800A2D947 /* ImageCashe.swift in Sources */,
 				362CDF7D239D03BD00783C73 /* WebViewController.swift in Sources */,
 				368B498723984268007A8494 /* Media.swift in Sources */,
 				36796DF62396BF4A00CDE40C /* AppDelegate.swift in Sources */,

@@ -62,15 +62,19 @@ class TableViewCell: UITableViewCell {
     }
     
     func setImage(imageURL : URL) {
-               DispatchQueue.main.async {
-                   let data = try? Data(contentsOf: imageURL)
-                   if let data = data {
-                       let image = UIImage(data: data)
-                       DispatchQueue.main.async {
-                        self.MyImageView.image = image
-                       }
-                   }
-               }
+//               DispatchQueue.main.async {
+//                   let data = try? Data(contentsOf: imageURL)
+//                   if let data = data {
+//                       let image = UIImage(data: data)
+//                       DispatchQueue.main.async {
+//                        self.MyImageView.image = image
+//                       }
+//                   }
+//               }
+        DispatchQueue.main.async {
+            self.MyImageView.loadImageUsingCacheWithURLString("\(imageURL)", placeHolder: UIImage(named: "placeholder"))
+        }
+        
     }
 
     
