@@ -106,7 +106,6 @@ class ViewController: UIViewController {
               CameraButton.backgroundColor = .systemBlue
               CameraButton.layer.cornerRadius = 40
               CameraButton.setImage(UIImage(named: "photo"), for: .normal)
-
               //CameraButton.setTitle("Сделать фото", for: .normal)
               CameraButton.addTarget(self, action: #selector(OpenCamera), for: .touchUpInside)
               return CameraButton

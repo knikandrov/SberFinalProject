@@ -103,6 +103,7 @@
 				367F2A4A239E50500031AC30 /* Model */,
 				36796DF52396BF4A00CDE40C /* AppDelegate.swift */,
 				36796DF72396BF4A00CDE40C /* SceneDelegate.swift */,
+				362CDF7E239D146100783C73 /* ImagePicker.swift */,
 				36796DF92396BF4A00CDE40C /* ViewController.swift */,
 				36BFCD49239957B600C62C92 /* TableViewController.swift */,
 				36BFCD4B23995BB200C62C92 /* TableViewCell.swift */,
@@ -131,7 +132,6 @@
 				368B498623984268007A8494 /* Media.swift */,
 				365D1D13239AA092006432C4 /* ItemsService.swift */,
 				365D1D0F239A5505006432C4 /* Item.swift */,
-				362CDF7E239D146100783C73 /* ImagePicker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

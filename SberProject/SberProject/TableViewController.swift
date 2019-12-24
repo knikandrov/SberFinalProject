@@ -19,15 +19,12 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        setupUI()
         
-        print(itemService.items)
+        setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: true)
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,6 +72,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func setupUI() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
